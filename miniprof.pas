@@ -1,7 +1,8 @@
 unit miniprof;
 {
   Встраиваемый профайлер MiniProfiler 1.53
-
+-  Roman Cherepanov 2017.  x64 support added. 15.06.2017.
+-  mailto: RCherepanov82@gmail.com
   Евгений Кацевман                  |
   Eugene Katsevman                  |
   2005-2006                         |
@@ -220,12 +221,12 @@ end;
 }
   function GetNextCodeAddress: pointer; //inline;
   // Получение адреса кода, следующего за вызовом метода SectionBegin
-  // с учетом того, что он инлайнится в SectionBegin
+  // с учетом наличия/отсутствия инлайнинга в SectionBegin
   asm
 
    {$IFDEF CPUX64}
     .NOFRAME     // this is "leaf" function, no need of stack management
-    MOV RCX, [RSP + $58 ]  // // i don't know, why $78 here, but next code adress is placed on this offset on stack.
+    MOV RCX, [RSP + $58 ]  // // i don't know, why $58 here, but next code adress is placed on this offset on stack.
     MOV Result, RCX
    {$ELSE CPUX64}
     MOV ECX, [ESP + $18]
