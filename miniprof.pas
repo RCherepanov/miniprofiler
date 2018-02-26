@@ -1,9 +1,6 @@
 unit miniprof;
 {
-  Встраиваемый профайлер MiniProfiler 1.54
-  Роман Черепанов 2017.  x64 support added. 15.06.2017.
-  mailto: RCherepanov82@gmail.com
-
+  Встраиваемый профайлер MiniProfiler 1.53
 
   Евгений Кацевман                  |
   Eugene Katsevman                  |
@@ -821,5 +818,6 @@ finalization
   ProfLock.Free;
 {$ENDIF}
 {$ENDIF}
+  freemem(path, 256); // needed becouse of FastMM memory leak warning.
 end.
 
